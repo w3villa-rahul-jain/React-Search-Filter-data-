@@ -1,11 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Table from "./Table";
 import { Users } from "./Users";
 
+import axios from 'axios';
+
 const AdvanceSearch = () => {
   const [query, setQuery] = useState("");
+  const [data, setData] = useState([]);
   console.log(query);
   // console.log(Users.filter(user=> user.first_name.toLowerCase().includes("fe")));
+
+// fetch data by api 
+
+useEffect(()=>{
+    const fetchUsers = async () =>{
+        const res = await axios.get("https://localhost:5000")
+        setData(res.data)
+    };
+    fetchUsers();  
+},[])
+
+// ----------------------
+
 
 //   Another way search user best aproach
 
